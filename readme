@@ -1,0 +1,72 @@
+Network Domain Capturer
+This script uses the tcpdump tool to capture HTTP/HTTPS traffic on your network and extracts the domain names visited during the session.
+
+
+###Features
+Network Traffic Capture: Captures HTTP and HTTPS traffic using the tcpdump tool.
+Domain Name Extraction: Extracts domain names from captured traffic.
+Flexible Configuration: Users can specify the network interface, target IP, and output file names.
+File Management: The domain file can be preserved or deleted based on user preference.
+
+###Usage
+
+./domain_capturer.sh [options]
+
+
+####Options
+-i INTERFACE
+Specify the network interface to capture traffic from. Default: any.
+
+-t TARGET_IP
+Filters traffic for a specific IP address. If not specified, all traffic is captured.
+
+-r RESULT_FILE
+Specify the file to save tcpdump output. Default: result.txt.
+
+-d DOMAIN_FILE
+Specify the file to save extracted domain names. Default: domains.txt.
+
+-k
+Prevents the script from deleting the domain file (domains.txt) after the script finishes. By default, this file is deleted.
+
+
+###Examples
+Run with default settings (capture all traffic):
+./domain_capturer.sh
+
+
+Capture traffic on a specific network interface (e.g., eth0):
+./domain_capturer.sh -i eth0
+
+
+Capture traffic for a specific IP address:
+./domain_capturer.sh -t 192.168.1.100
+
+
+Save output to custom files:
+./domain_capturer.sh -r custom_output.txt -d custom_domains.txt
+
+
+Preserve the domain file (it is deleted by default):
+./domain_capturer.sh -k
+
+
+###Requirements
+tcpdump: Required for capturing network traffic. Must be installed on the system before running the script.
+awk and grep: Linux tools used for text processing.
+
+
+###Permissions
+Make the script executable before running:
+
+chmod +x domain_capturer.sh
+
+
+###How It Works
+Traffic Capture: The script captures HTTP and HTTPS traffic on the specified network interface (any by default).
+Domain Extraction: Domain names are extracted from the tcpdump output.
+Results: The extracted domain names are saved to a specified file. The user presses any key when the script finishes to view the results.
+File Management: By default, temporary files (result.txt and domains.txt) are deleted after the script finishes. The -k option allows the domain file to be preserved.
+Notes
+The script may require elevated privileges (sudo) to run tcpdump properly.
+Temporary files are deleted by default. The domain file can be preserved using the -k option.
