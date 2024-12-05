@@ -56,8 +56,6 @@ rm "$RESULTFILENAME"
 
 if [ "$KEEP_DOMAINS_FILE" = false ]; then
   rm "$CAPTUREDDOMAINSFILE"
-else
-
 fi
 
 echo "Results displayed. Script terminated."
